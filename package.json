@@ -19,7 +19,12 @@
   },
   "homepage": "https://github.com/luana-fs/backend-challenge#readme",
   "dependencies": {
+    "@types/cors": "^2.8.13",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "knex": "^2.3.0",
+    "mysql": "^2.18.1",
     "typescript": "^4.9.4"
   },
   "devDependencies": {
