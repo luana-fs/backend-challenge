@@ -16,22 +16,25 @@ class UserRepository {
 
   constructor() {}
 
-  static async create({
-    name,
-    email,
-    password,
-    role,
-  }: ICreateUserDTO): Promise<void> {
+  async create({ name, email, password, role }: ICreateUserDTO): Promise<void> {
     //FIX IT - meu repositório não precisa conhecer meu connection (inversão de deps?)
     await connection("user").insert({ name, email, password, id_role: role });
   }
 
-  static async list(): Promise<User[]> {
+  async list(): Promise<User[]> {
     const users = await connection("user");
     return users;
   }
 
-  static async findById(id: number) {
+  async findByEmail(email: string): Promise<any> {
+    const user = await connection
+      .select("name", "email")
+      .from("user")
+      .where({ email });
+    return user;
+  }
+
+  async findById(id: number) {
     const user = await connection
       .select("name", "email")
       .from("user")
