@@ -14,5 +14,3 @@ export const connection = knex({
     multipleStatements: true,
   },
 });
-
-const teste = 6;

@@ -22,9 +22,14 @@ productsRouter.get("/:id", async (req: Request, res: Response) => {
 });
 
 productsRouter.post("/", async (req: Request, res: Response) => {
-  const { name, barCode, createdBy, category } = req.body;
-  createProductService.execute({ name, barCode, createdBy, category });
-  res.status(201).send({ message: "Produto criado com sucesso" });
+  try {
+    const { name, barCode, createdBy, category } = req.body;
+    createProductService.execute({ name, barCode, createdBy, category });
+    res.status(201).send({ message: "Produto criado com sucesso" });
+  } catch (err) {
+    console.log(err);
+    return res.status(404).send(err);
+  }
 });
 
 export default productsRouter;

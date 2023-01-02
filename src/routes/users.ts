@@ -9,13 +9,20 @@ const userRepository = new UserRepository();
 
 const usersRouter = Router();
 usersRouter.get("/", async (req: Request, res: Response) => {
-  const users = await connection("user");
+  const users = await userRepository.list();
   res.status(200).send(users);
 });
 
+usersRouter.get("/search", async (req: Request, res: Response) => {
+  const { email } = req.query;
+  const user = await userRepository.findByEmail(email as string);
+  res.status(200).send(user);
+});
+
+//os endpoins que possuem path variables sempre precisam ficar no final...
 usersRouter.get("/:id", async (req: Request, res: Response) => {
   const { id } = req.params;
-  const [user] = await userRepository.findById(Number(id));
+  const user = await userRepository.findById(Number(id));
   res.status(200).send(user);
 });
 
