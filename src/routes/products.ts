@@ -15,16 +15,22 @@ productsRouter.get("/", async (req: Request, res: Response) => {
   res.status(200).send(products);
 });
 
+productsRouter.get("/search", async (req: Request, res: Response) => {
+  const { name } = req.query;
+  const product = await productRepository.findByName(name as string);
+  res.status(200).send(product);
+});
+
 productsRouter.get("/:id", async (req: Request, res: Response) => {
   const { id } = req.params;
-  const [product] = await productRepository.findById(Number(id));
+  const product = await productRepository.findById(Number(id));
   res.status(200).send(product);
 });
 
 productsRouter.post("/", async (req: Request, res: Response) => {
   try {
     const { name, barCode, createdBy, category } = req.body;
-    createProductService.execute({ name, barCode, createdBy, category });
+    await createProductService.execute({ name, barCode, createdBy, category });
     res.status(201).send({ message: "Produto criado com sucesso" });
   } catch (err) {
     console.log(err);

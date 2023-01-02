@@ -1,5 +1,6 @@
 import { connection } from "../connection";
 import { Product } from "../models/Product";
+import { IProductRepository } from "./IProductRepository";
 
 //static permite usar a função sem estanciar a classe
 
@@ -12,17 +13,10 @@ interface ICreateProductDTO {
   category: number;
 }
 
-class ProductRepository {
-  private products: Product[];
-
+class ProductRepository implements IProductRepository {
   constructor() {}
 
-  async create({
-    name,
-    barCode,
-    createdBy,
-    category,
-  }: ICreateProductDTO): Promise<void> {
+  async create({ name, barCode, createdBy, category }): Promise<void> {
     //FIX IT - meu repositório não precisa conhecer meu connection (inversão de deps?)
     await connection("product").insert({
       name,
@@ -37,12 +31,23 @@ class ProductRepository {
     return products;
   }
 
+  async findByName(name: string): Promise<Product> {
+    const product = await connection
+      .select("name", "bar_code", "created_at", "created_by", "category")
+      .from("product")
+      .where({ name });
+    console.log(product);
+    return product[0];
+  }
+
   async findById(id: number) {
     const product = await connection
       .select("name", "bar_code", "created_at", "created_by", "category")
       .from("product")
       .where({ id_product: id });
-    return product;
+    console.log(product);
+
+    return product[0];
   }
 }
 
