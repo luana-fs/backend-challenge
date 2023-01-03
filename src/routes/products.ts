@@ -1,7 +1,5 @@
-import app from "../app";
 import { Request, Response, Router } from "express";
-import { connection } from "../connection";
-import { ProductRepository } from "../repositories/ProductRepository";
+import { ProductRepository } from "../repositories/implementations/ProductRepository";
 import { CreateProductService } from "../services/CreateProductService";
 
 //aqui instancia o UserRepository. Só pode instanciar uma vez se nao toda vez ele vai criar o constructor do zero.

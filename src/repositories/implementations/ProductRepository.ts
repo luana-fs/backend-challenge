@@ -1,6 +1,6 @@
-import { connection } from "../connection";
-import { Product } from "../models/Product";
-import { IProductRepository } from "./IProductRepository";
+import { connection } from "../../connection";
+import { Product } from "../../models/Product";
+import { IProductRepository } from "../IProductRepository";
 
 //static permite usar a função sem estanciar a classe
 

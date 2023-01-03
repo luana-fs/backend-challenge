@@ -1,4 +1,4 @@
-import { UserRepository } from "../repositories/UserRepository";
+import { IUserRepository } from "../repositories/IUserRepository";
 
 interface IRequest {
   name: string;
@@ -9,7 +9,7 @@ interface IRequest {
 
 //a camada services não pode conhecer a api (res.status.send), por isso, usamos o throw new Error.
 class CreateUserService {
-  constructor(private userRepository: UserRepository) {}
+  constructor(private userRepository: IUserRepository) {}
 
   async execute({ name, email, password, role }: IRequest): Promise<void> {
     if (!name) {

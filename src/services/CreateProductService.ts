@@ -1,4 +1,4 @@
-import { ProductRepository } from "../repositories/ProductRepository";
+import { ProductRepository } from "../repositories/implementations/ProductRepository";
 
 interface IRequest {
   id?: string;

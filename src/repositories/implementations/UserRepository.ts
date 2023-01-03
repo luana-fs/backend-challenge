@@ -1,6 +1,6 @@
-import { connection } from "../connection";
-import { User } from "../models/User";
-import { IUserRepository } from "./IUserRepository";
+import { connection } from "../../connection";
+import { User } from "../../models/User";
+import { IUserRepository } from "../IUserRepository";
 
 //static permite usar a função sem estanciar a classe
 
@@ -13,8 +13,6 @@ import { IUserRepository } from "./IUserRepository";
 // }
 
 class UserRepository implements IUserRepository {
-  private user: User[];
-
   constructor() {}
 
   async create({ name, email, password, role }): Promise<void> {
