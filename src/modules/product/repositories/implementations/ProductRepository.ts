@@ -1,4 +1,4 @@
-import { connection } from "../../connection";
+import { connection } from "../../../../connection";
 import { Product } from "../../models/Product";
 import { IProductRepository } from "../IProductRepository";
 
@@ -36,7 +36,6 @@ class ProductRepository implements IProductRepository {
       .select("name", "bar_code", "created_at", "created_by", "category")
       .from("product")
       .where({ name });
-    console.log(product);
     return product[0];
   }
 
@@ -45,8 +44,6 @@ class ProductRepository implements IProductRepository {
       .select("name", "bar_code", "created_at", "created_by", "category")
       .from("product")
       .where({ id_product: id });
-    console.log(product);
-
     return product[0];
   }
 }

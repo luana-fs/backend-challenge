@@ -1,16 +1,6 @@
-import { connection } from "../../connection";
+import { connection } from "../../../../connection";
 import { User } from "../../models/User";
 import { IUserRepository } from "../IUserRepository";
-
-//static permite usar a função sem estanciar a classe
-
-//DTO - data transfer object (transferir objetos entre camadas)
-// interface ICreateUserDTO {
-//   name: string;
-//   email: string;
-//   password: string;
-//   role: number;
-// }
 
 class UserRepository implements IUserRepository {
   constructor() {}

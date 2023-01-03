@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { createProductController } from "../controllers/createProductController";
-import { findProductByIdController } from "../controllers/findProductByIdController";
-import { findProductByNameController } from "../controllers/findProductByName";
-import { getAllProductsController } from "../controllers/getAllProductsController.ts";
+import { createProductController } from "../modules/product/controllers/createProductController";
+import { findProductByIdController } from "../modules/product/controllers/findProductByIdController";
+import { findProductByNameController } from "../modules/product/controllers/findProductByName";
+import { getAllProductsController } from "../modules/product/controllers/getAllProductsController.ts";
 
 const productsRouter = Router();
 

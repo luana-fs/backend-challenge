@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { createUserController } from "../controllers/createUserController";
-import { findUserByEmailController } from "../controllers/findUserByEmailController";
-import { findUserByIdController } from "../controllers/findUserByIdController";
-import { getAllUsersController } from "../controllers/getAllUsersController";
+import { createUserController } from "../modules/user/controllers/createUserController";
+import { findUserByEmailController } from "../modules/user/controllers/findUserByEmailController";
+import { findUserByIdController } from "../modules/user/controllers/findUserByIdController";
+import { getAllUsersController } from "../modules/user/controllers/getAllUsersController";
 
 const usersRouter = Router();
 
