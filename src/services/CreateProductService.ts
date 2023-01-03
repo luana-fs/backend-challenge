@@ -18,8 +18,20 @@ class CreateProductService {
     createdBy,
     category,
   }: IRequest): Promise<void> {
-    if (!name || !barCode || !createdBy || !category) {
-      throw new Error("Insira os dados corretamente.");
+    if (!name) {
+      throw new Error("name property is missing");
+    }
+
+    if (!barCode) {
+      throw new Error("barCode property is missing");
+    }
+
+    if (!createdBy) {
+      throw new Error("createdBy property is missing");
+    }
+
+    if (!category) {
+      throw new Error("category property is missing");
     }
 
     await this.productRepository.create({ name, barCode, createdBy, category });
