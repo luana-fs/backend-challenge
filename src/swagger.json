@@ -1,0 +1,202 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "My Store Documentations",
+    "description": "blabla escreva algo aqui",
+    "version": "1.0.0",
+    "contact": {
+      "email": "luana.farias@deliverit.com.br"
+    }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Create a new user",
+        "description": "Create a new category",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "number"
+                  }
+                },
+                "example": {
+                  "name": "John Doe",
+                  "email": "johndoe@email.com",
+                  "password": "123456",
+                  "role": 2
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "User already exists"
+          }
+        }
+      },
+      "get": {
+        "operationId": "getAllUsers",
+        "tags": ["User"],
+        "summary": "List all users",
+        "description": "list all users from the app",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  },
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "role": {
+                      "type": "number"
+                    }
+                  },
+                  "example": {
+                    "name": "John Doe",
+                    "email": "johndoe@email.com",
+                    "password": "123456",
+                    "role": 2
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{userId}": {
+      "parameters": [
+        {
+          "name": "userId",
+          "in": "path",
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "required": true,
+          "description": "Numeric ID of the user to get"
+        }
+      ],
+      "get": {
+        "tags": ["User"],
+        "summary": "Get user by id",
+        "description": "get an especific user by id",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "role": {
+                      "type": "number"
+                    }
+                  },
+                  "example": {
+                    "name": "John Doe",
+                    "email": "johndoe@email.com",
+                    "password": "123456",
+                    "role": 2
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/search": {
+      "parameters": [
+        {
+          "name": "email",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "format": "int64"
+          },
+          "required": true,
+          "description": "Email of the user to get"
+        }
+      ],
+      "get": {
+        "tags": ["User"],
+        "summary": "Get user by email",
+        "description": "get an especific user by email",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "role": {
+                      "type": "number"
+                    }
+                  },
+                  "example": {
+                    "name": "John Doe",
+                    "email": "johndoe@email.com",
+                    "password": "123456",
+                    "role": 2
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
