@@ -1,9 +1,11 @@
+import { hashPasswordService } from ".";
 import { IUserRepository } from "../repositories/IUserRepository";
 
 interface IRequest {
   name: string;
   email: string;
   password: string;
+  confirmPassword: string;
   role: number;
 }
 
@@ -11,7 +13,13 @@ interface IRequest {
 class CreateUserService {
   constructor(private userRepository: IUserRepository) {}
 
-  async execute({ name, email, password, role }: IRequest): Promise<void> {
+  async execute({
+    name,
+    email,
+    password,
+    confirmPassword,
+    role,
+  }: IRequest): Promise<void> {
     if (!name) {
       throw new Error("name property is missing");
     }
@@ -24,17 +32,34 @@ class CreateUserService {
       throw new Error("password property is missing");
     }
 
+    if (!confirmPassword) {
+      throw new Error("password property is missing");
+    }
+
     if (!role) {
       throw new Error("role property is missing");
     }
 
-    const userAlreadyExists = await this.userRepository.findByEmail(email);
+    const [userAlreadyExists] = await this.userRepository.findByEmail(email);
 
     if (userAlreadyExists) {
       throw new Error("User already exists");
     }
 
-    await this.userRepository.create({ name, email, password, role });
+    if (password === confirmPassword) {
+      const passwordHash = hashPasswordService.hashPassword(password);
+      console.log(passwordHash);
+      await this.userRepository.create({
+        name,
+        email,
+        password: passwordHash,
+        role,
+      });
+    } else {
+      throw new Error(
+        "properties password and confirmPassword must be equal value and type."
+      );
+    }
   }
 }
 
