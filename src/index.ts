@@ -1,4 +1,4 @@
-import app from "./app";
+import { app } from "./app";
 
 //a porta do servidor do express precisa ser diferente da porta do banco
 const port = 3307 || process.env.PORT;
