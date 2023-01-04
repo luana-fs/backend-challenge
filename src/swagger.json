@@ -1,0 +1,337 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "My Store Documentations",
+    "description": "blabla escreva algo aqui",
+    "version": "1.0.0",
+    "contact": {
+      "email": "luana.farias@deliverit.com.br"
+    }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Create a new user",
+        "description": "This endpoint allows create a new user and expects a JSON object in the request body containing the details of the user to be created. The JSON object should include required fields such as name, email, password and role.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                },
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "number"
+                  }
+                },
+                "example": [
+                  {
+                    "name": "John Doe",
+                    "email": "johndoe@email.com",
+                    "password": "123456",
+                    "role": 2
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "User already exists"
+          }
+        }
+      },
+      "get": {
+        "tags": ["User"],
+        "summary": "Get Users",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "int64"
+            },
+            "required": false,
+            "description": "Email of the user to get"
+          }
+        ],
+        "description": "This endpoint returns a list of all users in the form of a JSON array. It may also allow you to filter a unique user based on the email by passing as a query parameter. The user will be returned as an object within the JSON array.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  },
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "role": {
+                      "type": "number"
+                    }
+                  },
+                  "example": [
+                    {
+                      "name": "John Doe",
+                      "email": "johndoe@email.com",
+                      "password": "123456",
+                      "role": 2
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{userId}": {
+      "parameters": [
+        {
+          "name": "userId",
+          "in": "path",
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "required": true,
+          "description": "Numeric ID of the user to get"
+        }
+      ],
+      "get": {
+        "tags": ["User"],
+        "summary": "Get user by id",
+        "description": "get an especific user by id",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "role": {
+                      "type": "number"
+                    }
+                  },
+                  "example": [
+                    {
+                      "name": "John Doe",
+                      "email": "johndoe@email.com",
+                      "password": "123456",
+                      "role": 2
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products": {
+      "post": {
+        "tags": ["Products"],
+        "summary": "Create a new product",
+        "description": "Create a new product",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "barCode": {
+                    "type": "string"
+                  },
+                  "createdBy": {
+                    "type": "number"
+                  },
+                  "category": {
+                    "type": "number"
+                  }
+                },
+                "example": [
+                  {
+                    "name": "Product Name",
+                    "barCode": "908029302",
+                    "createdBy": 5,
+                    "category": 1
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Products"],
+        "summary": "Get All Products",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "int64"
+            },
+            "required": false,
+            "description": "name of the user to get"
+          }
+        ],
+        "description": "This endpoint gets a list of all products. It returns the list as a JSON array. The endpoint may also allow you to filter the list based on certain criteria by using query parameters.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  },
+                  "properties": {
+                    "id_product": {
+                      "type": "number"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "bar_code": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "created_by": {
+                      "type": "number"
+                    },
+                    "category": {
+                      "type": "number"
+                    }
+                  },
+                  "example": [
+                    {
+                      "id_product": 2,
+                      "name": "Product Name",
+                      "bar_code": "908029302",
+                      "created_at": "2023-01-02T17:50:03.000Z",
+                      "created_by": 5,
+                      "category": 1
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "required": true,
+          "description": "Numeric ID of the user to get a specific product"
+        }
+      ],
+      "get": {
+        "tags": ["Products"],
+        "summary": "Get a product by id",
+        "description": "get an especific product by id",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+
+                  "properties": {
+                    "id_product": {
+                      "type": "number"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "bar_code": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "created_by": {
+                      "type": "number"
+                    },
+                    "category": {
+                      "type": "number"
+                    }
+                  },
+                  "example": [
+                    {
+                      "id_product": 2,
+                      "name": "Product Name",
+                      "bar_code": "908029302",
+                      "created_at": "2023-01-02T17:50:03.000Z",
+                      "created_by": 5,
+                      "category": 1
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

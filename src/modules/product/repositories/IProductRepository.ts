@@ -15,8 +15,8 @@ interface IProductRepository {
     category,
   }: ICreateProductDTO): Promise<void>;
   list(): Promise<Product[]>;
-  findByName(name: string): Promise<Product>;
-  findById(id: number): Promise<Product>;
+  findByName(name: string): Promise<Product[]>;
+  findById(id: number): Promise<Product[]>;
 }
 
 export { IProductRepository };
