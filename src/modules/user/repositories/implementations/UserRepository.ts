@@ -15,21 +15,21 @@ class UserRepository implements IUserRepository {
     return users;
   }
 
-  async findByEmail(email: string): Promise<User> {
+  async findByEmail(email: string): Promise<User[]> {
     const user = await connection
       .select("name", "email", "password", "id_role")
       .from("user")
       .where({ email });
-    return user[0];
+    return user;
   }
 
-  async findById(id: number): Promise<User> {
+  async findById(id: number): Promise<User[]> {
     const user = await connection
       .select("name", "email", "password", "id_role")
       .from("user")
       .where({ id_user: id });
 
-    return user[0];
+    return user;
   }
 }
 

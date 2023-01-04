@@ -31,12 +31,12 @@ class ProductRepository implements IProductRepository {
     return products;
   }
 
-  async findByName(name: string): Promise<Product> {
+  async findByName(name: string): Promise<Product[]> {
     const product = await connection
       .select("name", "bar_code", "created_at", "created_by", "category")
       .from("product")
       .where({ name });
-    return product[0];
+    return product;
   }
 
   async findById(id: number) {
@@ -44,7 +44,7 @@ class ProductRepository implements IProductRepository {
       .select("name", "bar_code", "created_at", "created_by", "category")
       .from("product")
       .where({ id_product: id });
-    return product[0];
+    return product;
   }
 }
 

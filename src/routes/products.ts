@@ -7,7 +7,7 @@ import { getAllProductsController } from "../modules/product/controllers/getAllP
 const productsRouter = Router();
 
 productsRouter.get("/", getAllProductsController);
-productsRouter.get("/search", findProductByNameController);
+// productsRouter.get("/search", findProductByNameController);
 productsRouter.get("/:id", findProductByIdController);
 productsRouter.post("/", createProductController);
 
