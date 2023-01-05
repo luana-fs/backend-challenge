@@ -1,4 +1,4 @@
-import { signUpService, userRepository } from "../services";
+import { signUpService } from "../services";
 import { Request, Response } from "express";
 
 const signUpController = async (req: Request, res: Response) => {

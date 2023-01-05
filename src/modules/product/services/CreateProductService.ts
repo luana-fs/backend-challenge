@@ -1,6 +1,8 @@
+import { verifyToken } from "../../../utils/JWTGenerator";
 import { ProductRepository } from "../repositories/implementations/ProductRepository";
 
 interface IRequest {
+  auth: string;
   id?: string;
   name: string;
   barCode: string;
@@ -13,6 +15,7 @@ class CreateProductService {
   constructor(private productRepository: ProductRepository) {}
 
   async execute({
+    auth,
     name,
     barCode,
     createdBy,
@@ -34,7 +37,22 @@ class CreateProductService {
       throw new Error("category property is missing");
     }
 
-    await this.productRepository.create({ name, barCode, createdBy, category });
+    if (!auth) {
+      throw new Error("Token in missing");
+    }
+
+    const isTokenValid = verifyToken(auth);
+
+    if (isTokenValid) {
+      await this.productRepository.create({
+        name,
+        barCode,
+        createdBy,
+        category,
+      });
+    } else {
+      throw new Error("Invalid token");
+    }
   }
 }
 

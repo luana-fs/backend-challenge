@@ -1,6 +1,6 @@
 import { hashPasswordService } from ".";
 import { IUserRepository } from "../repositories/IUserRepository";
-import { tokenGenerator } from "./utils/JWTGenerator";
+import { tokenGenerator } from "../../../utils/JWTGenerator";
 
 interface IRequest {
   email: string;
