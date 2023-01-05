@@ -18,7 +18,6 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "array",
                 "items": {
                   "type": "object"
                 },
@@ -32,18 +31,20 @@
                   "password": {
                     "type": "string"
                   },
+                  "confirmPassword": {
+                    "type": "string"
+                  },
                   "role": {
                     "type": "number"
                   }
                 },
-                "example": [
-                  {
-                    "name": "John Doe",
-                    "email": "johndoe@email.com",
-                    "password": "123456",
-                    "role": 2
-                  }
-                ]
+                "example": {
+                  "name": "John Doe",
+                  "email": "johndoe@test.com",
+                  "password": "123456",
+                  "confirmPassword": "123456",
+                  "role": 2
+                }
               }
             }
           }
@@ -123,6 +124,16 @@
           },
           "required": true,
           "description": "Numeric ID of the user to get"
+        },
+        {
+          "name": "auth",
+          "in": "header",
+          "schema": {
+            "type": "string",
+            "format": "int64"
+          },
+          "required": true,
+          "description": "auth token"
         }
       ],
       "get": {
@@ -166,11 +177,65 @@
         }
       }
     },
+    "/users/login": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Login",
+        "description": "Sign in to the app",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "email": "johndoe3@test.com",
+                  "password": "123456"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/products": {
       "post": {
         "tags": ["Products"],
         "summary": "Create a new product",
         "description": "Create a new product",
+        "parameters": [
+          {
+            "name": "auth",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "format": "int64"
+            },
+            "required": true,
+            "description": "auth token"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -282,6 +347,16 @@
           },
           "required": true,
           "description": "Numeric ID of the user to get a specific product"
+        },
+        {
+          "name": "auth",
+          "in": "header",
+          "schema": {
+            "type": "string",
+            "format": "int64"
+          },
+          "required": true,
+          "description": "auth token"
         }
       ],
       "get": {
