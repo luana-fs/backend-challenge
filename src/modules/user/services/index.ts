@@ -1,5 +1,6 @@
 import { UserRepository } from "../repositories/implementations/UserRepository";
 import { CreateUserService } from "./CreateUserService";
+import { DeleteUserService } from "./DeleteUserService";
 import { EditUserService } from "./EditUserService";
 import { FindUserByIdService } from "./FindUserByIdService";
 import { HashPasswordService } from "./HashPasswordService";
@@ -15,6 +16,7 @@ const signUpService = new SignUpService(userRepository);
 const hashPasswordService = new HashPasswordService();
 const findUserByIdService = new FindUserByIdService(userRepository);
 const editUserService = new EditUserService(userRepository);
+const deleteUserService = new DeleteUserService(userRepository);
 
 export {
   userRepository,
@@ -23,4 +25,5 @@ export {
   signUpService,
   findUserByIdService,
   editUserService,
+  deleteUserService,
 };

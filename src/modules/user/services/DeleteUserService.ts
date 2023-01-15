@@ -5,15 +5,12 @@ import { verifyToken } from "../../../utils/JWTGenerator";
 interface IRequest {
   id: number;
   auth: string;
-  name: string;
-  email: string;
-  role: number;
 }
 
-class EditUserService {
+class DeleteUserService {
   constructor(private userRepository: IUserRepository) {}
 
-  async execute({ id, auth, name, email, role }: IRequest): Promise<number> {
+  async execute({ id, auth }: IRequest): Promise<number> {
     if (!auth) {
       throw new Error("auth property is missing");
     }
@@ -29,15 +26,10 @@ class EditUserService {
     }
 
     if (isTokenValid && id) {
-      const user = await this.userRepository.edit(
-        Number(id),
-        name,
-        email,
-        role
-      );
+      const user = await this.userRepository.delete(Number(id));
       return user;
     }
   }
 }
 
-export { EditUserService };
+export { DeleteUserService };

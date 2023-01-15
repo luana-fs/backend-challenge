@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { createUserController } from "../modules/user/controllers/createUserController";
+import { deleteUserController } from "../modules/user/controllers/deleteUserController";
 import { editUserController } from "../modules/user/controllers/editUserController";
 import { findUserByIdController } from "../modules/user/controllers/findUserByIdController";
 import { getAllUsersController } from "../modules/user/controllers/getAllUsersController";
@@ -12,5 +13,6 @@ usersRouter.post("/login", signUpController);
 usersRouter.get("/:id", findUserByIdController);
 usersRouter.put("/:id", editUserController); //os endpoints que possuem path variables sempre precisam ficar no final...
 usersRouter.post("/", createUserController);
+usersRouter.delete("/:id", deleteUserController);
 
 export default usersRouter;

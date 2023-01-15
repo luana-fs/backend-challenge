@@ -13,6 +13,7 @@ interface IUserRepository {
   findByEmail(email: string): Promise<User[]>;
   findById(id: number): Promise<User[]>;
   edit(id: number, name: string, email: string, role: number): Promise<number>;
+  delete(id: number): Promise<any>;
 }
 
 export { IUserRepository };

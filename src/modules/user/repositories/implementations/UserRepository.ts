@@ -46,6 +46,11 @@ class UserRepository implements IUserRepository {
 
     return user;
   }
+
+  async delete(id: number): Promise<any> {
+    const user = await connection("user").where({ id_user: id }).del();
+    return user;
+  }
 }
 
 export { UserRepository };
