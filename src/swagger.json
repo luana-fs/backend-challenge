@@ -241,6 +241,33 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": ["User"],
+        "summary": "delete user by id",
+        "description": "delete an especific user by id",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "type": "number"
+                    }
+                  },
+                  "example": [
+                    {
+                      "user": "John Doe"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/users/login": {
