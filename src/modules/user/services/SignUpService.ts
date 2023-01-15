@@ -21,13 +21,11 @@ class SignUpService {
     }
 
     const [user] = await this.userRepository.findByEmail(email);
-    console.log(user);
 
     const match = hashPasswordService.checkUser(password, user.password);
-    console.log(match);
 
     if (match) {
-      const token = tokenGenerator(email, password);
+      const token = tokenGenerator(Number(user.id_user), email, password);
       return token;
     } else {
       throw new Error("Incorrect password");

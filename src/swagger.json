@@ -499,6 +499,87 @@
             }
           }
         }
+      },
+      "put": {
+        "tags": ["Products"],
+        "summary": "edit product by id",
+        "description": "edit an especific product by id",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "barCode": {
+                    "type": "string"
+                  },
+                  "category": {
+                    "type": "number"
+                  }
+                },
+                "example": [
+                  {
+                    "name": "Sapato Branco",
+                    "barCode": "824294892",
+                    "category": 2
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "product": {
+                      "type": "number"
+                    }
+                  },
+                  "example": [
+                    {
+                      "product": 1
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Products"],
+        "summary": "delete user by id",
+        "description": "delete an especific user by id",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "product": {
+                      "type": "number"
+                    }
+                  },
+                  "example": [
+                    {
+                      "product": 1
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

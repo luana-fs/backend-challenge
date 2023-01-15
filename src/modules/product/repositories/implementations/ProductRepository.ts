@@ -31,6 +31,19 @@ class ProductRepository implements IProductRepository {
     return products;
   }
 
+  async edit(
+    id: number,
+    name: string,
+    barCode: string,
+    category: number
+  ): Promise<number> {
+    const product = await connection("product")
+      .where({ id_product: id })
+      .update({ name: name, bar_code: barCode, category: category });
+
+    return product;
+  }
+
   async findByName(name: string): Promise<Product[]> {
     const product = await connection
       .select("name", "bar_code", "created_at", "created_by", "category")
@@ -44,6 +57,11 @@ class ProductRepository implements IProductRepository {
       .select("name", "bar_code", "created_at", "created_by", "category")
       .from("product")
       .where({ id_product: id });
+    return product;
+  }
+
+  async delete(id: number): Promise<any> {
+    const product = await connection("product").where({ id_product: id }).del();
     return product;
   }
 }

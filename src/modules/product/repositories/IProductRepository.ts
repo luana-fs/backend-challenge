@@ -17,6 +17,13 @@ interface IProductRepository {
   list(): Promise<Product[]>;
   findByName(name: string): Promise<Product[]>;
   findById(id: number): Promise<Product[]>;
+  edit(
+    id: number,
+    name: string,
+    barCode: string,
+    category: number
+  ): Promise<number>;
+  delete(id: number): Promise<any>;
 }
 
 export { IProductRepository };

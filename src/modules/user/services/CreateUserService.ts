@@ -48,7 +48,6 @@ class CreateUserService {
 
     if (password === confirmPassword) {
       const passwordHash = hashPasswordService.hashPassword(password);
-      console.log(passwordHash);
       await this.userRepository.create({
         name,
         email,
