@@ -11,13 +11,28 @@ class UserRepository implements IUserRepository {
   }
 
   async list(): Promise<User[]> {
-    const users = await connection("user");
+    const users = await connection
+      .select("id_user", "name", "email", "id_role")
+      .from("user");
     return users;
+  }
+
+  async edit(
+    id: number,
+    name: string,
+    email: string,
+    role: number
+  ): Promise<number> {
+    const user = await connection("user")
+      .where({ id_user: id })
+      .update({ name: name, email: email, id_role: role });
+
+    return user;
   }
 
   async findByEmail(email: string): Promise<User[]> {
     const user = await connection
-      .select("name", "email", "password", "id_role")
+      .select("id_user", "name", "email", "password", "id_role")
       .from("user")
       .where({ email });
     return user;
@@ -25,7 +40,7 @@ class UserRepository implements IUserRepository {
 
   async findById(id: number): Promise<User[]> {
     const user = await connection
-      .select("name", "email", "password", "id_role")
+      .select("name", "email", "id_role")
       .from("user")
       .where({ id_user: id });
 

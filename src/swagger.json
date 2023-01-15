@@ -175,6 +175,72 @@
             }
           }
         }
+      },
+      "put": {
+        "tags": ["User"],
+        "summary": "edit user by id",
+        "description": "edit an especific user by id",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "number"
+                  }
+                },
+                "example": [
+                  {
+                    "name": "John Doe",
+                    "email": "johndoe@email.com",
+                    "role": 2
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "role": {
+                      "type": "number"
+                    }
+                  },
+                  "example": [
+                    {
+                      "name": "John Doe",
+                      "email": "johndoe@email.com",
+                      "role": 2
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/users/login": {
