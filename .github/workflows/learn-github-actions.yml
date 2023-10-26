@@ -36,5 +36,5 @@ jobs:
           # Execute a análise do SonarQube
           # Substitua as informações de URL do SonarQube e projeto
           sonar-scanner \
-            -Dsonar.host.url=URL_DO_SEU_SONARQUBE \
-            -Dsonar.projectKey=SEU_PROJETO_KEY
+            -Dsonar.host.url=https://sonarcloud.io/project/overview?id=luana-fs_backend-challenge \
+            -Dsonar.projectKey=luana-fs_backend-challenge
