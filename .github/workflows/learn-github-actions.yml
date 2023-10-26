@@ -29,6 +29,7 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@v1.8
         with:
           organization: "sua-organizacao"
+          projectKey: myfirstproject
           token: ${{ secrets.SONARQUBE }}
         env:
           SONAR_TOKEN: ${{ secrets.SONARQUBE }}
@@ -43,4 +44,5 @@ jobs:
           sonar-scanner \
             -Dsonar.host.url=https://sonarcloud.io/project/overview?id=luana-fs_backend-challenge \
             -Dsonar.projectKey=luana-fs_backend-challenge \
-            -Dsonar.projectKey=myfirstproject
+            -Dsonar.projectKey=myfirstproject \
+            -Dsonar.organization=default-organization
