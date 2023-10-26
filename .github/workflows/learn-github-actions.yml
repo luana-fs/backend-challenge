@@ -11,3 +11,30 @@ jobs:
           node-version: '14'
       - run: npm install -g bats
       - run: bats -v
+
+  sonarqube-analysis:
+    runs-on: ubuntu-latest
+    needs: check-bats-version
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11
+
+      - name: Build Project
+        run: |
+          # Comandos para compilar seu projeto
+          # Exemplo: mvn clean install
+
+      - name: Run SonarQube Analysis
+        env:
+          SONAR_TOKEN: ${{ secrets.SONARQUBE }}
+        run: |
+          # Execute a análise do SonarQube
+          # Substitua as informações de URL do SonarQube e projeto
+          sonar-scanner \
+            -Dsonar.host.url=URL_DO_SEU_SONARQUBE \
+            -Dsonar.projectKey=SEU_PROJETO_KEY
