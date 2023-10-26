@@ -30,6 +30,8 @@ jobs:
         with:
           organization: "sua-organizacao"
           token: ${{ secrets.SONARQUBE }}
+        env:
+          SONAR_TOKEN: ${{ secrets.SONARQUBE }}
 
       - name: Build Project
         run: |
