@@ -19,12 +19,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Set up Java
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'adopt'
-          java-version: 11
-
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v1.8
         with:
@@ -44,5 +38,4 @@ jobs:
           sonar-scanner \
             -Dsonar.host.url=https://sonarcloud.io/project/overview?id=luana-fs_backend-challenge \
             -Dsonar.projectKey=luana-fs_backend-challenge \
-            -Dsonar.projectKey=myfirstproject \
             -Dsonar.organization=default-organization
