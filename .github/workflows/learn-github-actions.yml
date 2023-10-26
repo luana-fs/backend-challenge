@@ -32,6 +32,7 @@ jobs:
           token: ${{ secrets.SONARQUBE }}
         env:
           SONAR_TOKEN: ${{ secrets.SONARQUBE }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Project
         run: |
